@@ -1,0 +1,23 @@
+// Optimizer demo - constant folding and dead code elimination
+
+// Constant folding: 2 + 3 will be folded to 5 at compile time
+let x = 2 + 3
+print("Constant fold: " + str(x))
+
+// More constant folding
+let y = 10 * 5 + 2
+print("Folded: " + str(y))
+
+// Dead code elimination demo
+fn early_return() {
+    print("This runs")
+    return 42
+    print("This is dead code - won't appear in optimized AST")
+}
+
+let result = early_return()
+print("Result: " + str(result))
+
+// Boolean constant folding
+let always_true = true or false
+print("true or false = " + str(always_true))
