@@ -1,0 +1,20 @@
+// Variables and arithmetic in Satan
+let x = 10
+let y = 20
+let sum = x + y
+let diff = x - y
+let product = x * y
+let quotient = y / x
+
+print("x = " + str(x))
+print("y = " + str(y))
+print("sum = " + str(sum))
+print("diff = " + str(diff))
+print("product = " + str(product))
+print("quotient = " + str(quotient))
+
+// String operations
+let name = "Satan"
+let greeting = "Hello, " + name + "!"
+print(greeting)
+print("Name length: " + str(len(name)))

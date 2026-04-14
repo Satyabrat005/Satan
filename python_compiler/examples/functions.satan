@@ -1,0 +1,32 @@
+// Functions in Satan language
+
+fn add(a, b) {
+    return a + b
+}
+
+fn factorial(n) {
+    if n <= 1 {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+fn fibonacci(n) {
+    if n <= 0 {
+        return 0
+    }
+    if n == 1 {
+        return 1
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+fn greet(name) {
+    print("Hello, " + name + "!")
+}
+
+// Test the functions
+print("add(3, 4) = " + str(add(3, 4)))
+print("factorial(5) = " + str(factorial(5)))
+print("fibonacci(10) = " + str(fibonacci(10)))
+greet("Satan Developer")
