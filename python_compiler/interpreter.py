@@ -205,10 +205,22 @@ class Interpreter:
         raise RuntimeError(f"Unknown expression type: {type(node).__name__}", node.line, node.column)
 
     def _eval_binary(self, node: BinaryOp, env: Environment):
+        # Short-circuit evaluation for and/or
+        op = node.op
+        if op == 'and':
+            left = self.evaluate(node.left, env)
+            if not self._is_truthy(left):
+                return left
+            return self.evaluate(node.right, env)
+        if op == 'or':
+            left = self.evaluate(node.left, env)
+            if self._is_truthy(left):
+                return left
+            return self.evaluate(node.right, env)
+
         left = self.evaluate(node.left, env)
         right = self.evaluate(node.right, env)
 
-        op = node.op
         try:
             if op == '+':
                 if isinstance(left, str) or isinstance(right, str):
@@ -242,10 +254,6 @@ class Interpreter:
                 return left <= right
             elif op == '>=':
                 return left >= right
-            elif op == 'and':
-                return left and right
-            elif op == 'or':
-                return left or right
         except TypeError as e:
             raise RuntimeError(
                 f"Type error: cannot apply '{op}' to {type(left).__name__} and {type(right).__name__}",
